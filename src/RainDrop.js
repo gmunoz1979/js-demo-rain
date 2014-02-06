@@ -19,7 +19,7 @@ RainDrop = Class(
     },
 
     clear: function() {
-      this.cxt.clearRect(this.x, this.y, this.width, this.height);
+      this.cxt.clearRect(this.x-1, this.y, this.width+2, this.height);
     },
 
     draw: function() {
@@ -33,8 +33,11 @@ RainDrop = Class(
       grad.addColorStop(1, this.color);
 
       this.cxt.save();
-      this.cxt.fillStyle = grad;
-      this.cxt.fillRect(this.x, this.y, this.width, this.height);
+      this.cxt.strokeStyle = grad;
+      this.cxt.beginPath();
+      this.cxt.moveTo(x1, y1);
+      this.cxt.lineTo(x2, y2);
+      this.cxt.stroke();
       this.cxt.restore();
     },
 
