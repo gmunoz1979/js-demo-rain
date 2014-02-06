@@ -9,6 +9,13 @@ RainDropManager = Singleton(
       '#97FFFF'
     ],
 
+    sizes: [
+       60,
+       80,
+      100,
+      120
+    ],
+
     add: function(instance) {
       if (this.instances[instance.id]) {
         return;
@@ -68,7 +75,7 @@ RainDropManager = Singleton(
     },
 
     getHeight: function(speed) {
-      return ((speed - 6) * 10) + 90;
+      return this.sizes[speed - 6];
     },
 
     getRandom: function(min, max) {
