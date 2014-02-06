@@ -18,7 +18,7 @@ function getRandom(min, max) {
 }
 
 function getSpeed() {
-  return getRandom(5, 7);
+  return getRandom(7, 9);
 }
 
 function getHeight() {
@@ -81,7 +81,7 @@ function getID() { return 'rain-' + id++ };
           /** 
            * Siguiente grupo de gotas
            */
-          timeDelta = new Date().getTime() + Math.floor((Math.random() * 100) + 1);
+          timeDelta = new Date().getTime() + Math.floor((Math.random() * 50) + 1);
         }
 
         RainDropManager.update();
