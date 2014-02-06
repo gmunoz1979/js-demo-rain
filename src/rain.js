@@ -5,33 +5,6 @@ const maxHeight = 400;
 const maxWidth  = 400;
 
 const bgColor = '#000000';
-const colors  = [
-  '#4EB4BB',
-  '#CACA6C',
-  '#83BD99'
-];
-
-function getRandom(min, max) {
-  max = max - min + (min != 0 ? 1 : 0);
-
-  return Math.floor((Math.random()*max)+min);
-}
-
-function getSpeed() {
-  return getRandom(7, 9);
-}
-
-function getHeight() {
-  return getRandom(100, 120);
-}
-
-function getX() {
-  return getRandom(1, maxWidth);
-}
-
-function getColor() {
-  return colors[getRandom(0, colors.length)];
-}
 
 function getContext() {
   var canvas = document.getElementById('rain');
@@ -59,21 +32,24 @@ function getID() { return 'rain-' + id++ };
         return;
       }
 
-      var timeDelta = 0;
+      var rm = RainDropManager,
+          timeDelta = 0;
       var loop = function() {
         if (new Date().getTime() > timeDelta) {
 
-          RainDropManager.add(
+          var speed = rm.getSpeed();
+
+          rm.add(
             new RainDrop(
               {
                 cxt: cxt,
+                x:         rm.getPositionX(),
                 maxHeight: maxHeight,
-                maxWidth: maxWidth,
-                bgColor: bgColor,
-                color: getColor(),
-                speed: getSpeed(),
-                height: getHeight(),
-                x: getX()
+                maxWidth:  maxWidth,
+                bgColor:   bgColor,
+                speed:     speed,
+                color:     rm.getColor(speed),
+                height:    rm.getHeight(speed)
               }
             )
           );
@@ -81,7 +57,7 @@ function getID() { return 'rain-' + id++ };
           /** 
            * Siguiente grupo de gotas
            */
-          timeDelta = new Date().getTime() + Math.floor((Math.random() * 50) + 1);
+          timeDelta = new Date().getTime() + Math.floor((Math.random() * 20) + 1);
         }
 
         RainDropManager.update();
