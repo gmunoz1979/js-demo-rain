@@ -55,6 +55,10 @@ RainDropManager = Singleton(
       return rnd;
     },
 
+    getAngle: function() {
+      return -this.getRandom(85, 95);
+    },
+
     getColor: function(speed) {
       return this.colors[speed - 6];
     },

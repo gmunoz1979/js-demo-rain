@@ -32,9 +32,21 @@ function getID() { return 'rain-' + id++ };
         return;
       }
 
-      var rm = RainDropManager,
-          timeDelta = 0;
+      var timeDeltaAngle = 0,
+          timeDelta = 0,
+          rm = RainDropManager,
+          angle;
+
       var loop = function() {
+        if (new Date().getTime() > timeDeltaAngle) {
+          angle = rm.getAngle();
+
+          /** 
+           * Siguiente Angulo
+           */
+          timeDeltaAngle = new Date().getTime() + Math.floor((Math.random() * (10000-5000)) + 5000);
+        }
+
         if (new Date().getTime() > timeDelta) {
 
           var speed = rm.getSpeed();
@@ -44,6 +56,7 @@ function getID() { return 'rain-' + id++ };
               {
                 cxt: cxt,
                 x:         rm.getPositionX(),
+                angle:     angle,
                 maxHeight: maxHeight,
                 maxWidth:  maxWidth,
                 bgColor:   bgColor,
