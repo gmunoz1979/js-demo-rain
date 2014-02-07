@@ -18,6 +18,7 @@ RainDrop = Class(
     color: null,
 
     colors: [
+      '#160d50',
       '#483D8B',
       '#009ACD',
       '#00B2EE',
@@ -25,6 +26,7 @@ RainDrop = Class(
     ],
 
     sizes: [
+       40,
        60,
        80,
       100,
@@ -32,6 +34,7 @@ RainDrop = Class(
     ],
 
     speeds: [
+      200,
       300,
       400,
       500,

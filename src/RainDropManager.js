@@ -53,7 +53,7 @@ RainDropManager = Singleton(
     },
 
     getType: function() {
-      return getRandom(0, 4);
+      return getRandom(0, 5);
     }
   }
 );
