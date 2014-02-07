@@ -11,7 +11,16 @@ const BGCOLOR = '#000000';
 /**
  * Definimos angulo inicial
  */
-const ANGLE = 90;
+const ANGLE = -90;
+
+function getAngle() {
+  return {
+    angle: RainDropManager.getAngle(),
+    force: getRandom(500, 2000) / 1000.0,
+    duration: getRandom(500, 1000),
+    lock: false
+  }
+}
 
 (
   function(root) {
@@ -30,7 +39,11 @@ const ANGLE = 90;
           
       var rm = RainDropManager;
 
-      var angle = ANGLE;
+      var angle  = ANGLE,
+          oAngle = getAngle();
+
+      var factor = angle > oAngle.angle ? -1 : 1,
+          tAngle;
 
       var loop = function() {
         var tt = new Date().getTime();
@@ -43,7 +56,7 @@ const ANGLE = 90;
               {
                 cxt: cxt,
                 x:         rm.getPositionX(),
-                angle:     -angle,
+                angle:     angle,
                 maxHeight: MAXHEIGHT,
                 maxWidth:  MAXWIDTH,
                 bgColor:   BGCOLOR,
@@ -52,13 +65,32 @@ const ANGLE = 90;
             )
           );
 
+          if ((factor === 1 && oAngle.angle > angle) || (factor === -1 && angle > oAngle.angle)) {
+            angle += (factor * dt * oAngle.force);
+            tAngle = ct + oAngle.duration;
+          }
+          else {
+            if (ct > tAngle) {
+              if (oAngle.angle === ANGLE) {
+                oAngle = getAngle();
+                factor = angle > oAngle.angle ? -1 : 1;
+              }
+              else {
+                oAngle.angle = ANGLE;
+                oAngle.duration = getRandom(1000, 3000);
+                oAngle.force = 2;
+                factor = angle > oAngle.angle ? -1 : 1;
+              }
+            }
+          }
+
           /** 
            * Siguiente grupo de gotas
            */
           nt = getNextTime(1, 20);
         }
 
-        RainDropManager.update(dt);
+        RainDropManager.update(dt, angle);
         requestAnimationFrame(loop);
       }
 

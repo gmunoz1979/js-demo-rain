@@ -50,7 +50,7 @@ RainDropManager = Singleton(
     },
 
     getAngle: function() {
-      return -getRandom(85, 95);
+      return -getRandom(80, 100);
     },
 
     getType: function() {
