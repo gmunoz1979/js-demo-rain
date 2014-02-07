@@ -54,6 +54,15 @@ RainDrop = Class(
       this.xy2 = this.getXY(this.radius);
     },
 
+    setAngle: function(angle) {
+      if (angle === this.angle) {
+        return;
+      }
+
+      this.angle = angle;
+      this.rad   = (Math.PI/180) * this.angle;
+    },
+
     getXY: function(radius) {
       return {
         y: this.y - Math.ceil(Math.sin(this.rad) * radius),
