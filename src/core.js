@@ -34,3 +34,18 @@ function getNextTime() {
 
 var id = 0;
 function getID() { return 'rain-' + id++ };
+
+function getContext(id) {
+  var canvas = document.getElementById(id);
+
+  if (!canvas) {
+    throw new Error('No se encontro elemento Canvas');
+  }
+
+  if (!canvas || !canvas.getContext) {
+    console.error('Canvas no soporta la funcion getContext');
+    return;
+  }
+
+  return canvas.getContext('2d');
+}

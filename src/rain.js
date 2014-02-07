@@ -6,23 +6,12 @@ const maxWidth  = 400;
 
 const bgColor = '#000000';
 
-function getContext() {
-  var canvas = document.getElementById('rain');
-
-  if (!canvas || !canvas.getContext) {
-    console.error('Canvas no soporta la funcion getContext');
-    return;
-  }
-
-  return canvas.getContext('2d');
-}
-
 (
   function(root) {
     'use strict';
 
     root.onload = function() {
-      var cxt = getContext();
+      var cxt = getContext('rain');
 
       if (!cxt) {
         console.error('No se encontro contexto. No se puede seguir ejecutando la Aplicacion.');
