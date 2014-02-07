@@ -44,7 +44,7 @@ RainDropManager = Singleton(
           i = this.instances;
 
       while (!isValid) {
-        rnd     = this.getRandom(1, maxWidth);
+        rnd     = getRandom(1, maxWidth);
         isValid = true;
 
         for (var n in i) {
@@ -63,7 +63,7 @@ RainDropManager = Singleton(
     },
 
     getAngle: function() {
-      return -this.getRandom(85, 95);
+      return -getRandom(85, 95);
     },
 
     getColor: function(speed) {
@@ -71,16 +71,11 @@ RainDropManager = Singleton(
     },
 
     getSpeed: function() {
-      return this.getRandom(6, 9);
+      return getRandom(6, 9);
     },
 
     getHeight: function(speed) {
       return this.sizes[speed - 6];
-    },
-
-    getRandom: function(min, max) {
-      max = max - min + (min != 0 ? 1 : 0);
-      return Math.floor((Math.random()*max)+min);
     }
   }
 );

@@ -22,3 +22,12 @@ function apply(o, config, defaults) {
     if (!o[name] && item) { o[name] = item; }
   }
 }
+
+function getRandom(min, max) {
+  max = max - min + (min != 0 ? 1 : 0);
+  return Math.floor((Math.random()*max)+min);
+}
+
+function getNextTime() {
+  return new Date().getTime() + getRandom.apply(getRandom, arguments);
+}

@@ -42,9 +42,10 @@ function getID() { return 'rain-' + id++ };
           angle = rm.getAngle();
 
           /** 
-           * Siguiente Angulo
+           * Entre 5 y 10 segundos cambiar el angulo
+           * de las gotas.
            */
-          timeDeltaAngle = new Date().getTime() + Math.floor((Math.random() * (10000-5000)) + 5000);
+          timeDeltaAngle = getNextTime(5000, 10000);
         }
 
         if (new Date().getTime() > timeDelta) {
@@ -70,11 +71,10 @@ function getID() { return 'rain-' + id++ };
           /** 
            * Siguiente grupo de gotas
            */
-          timeDelta = new Date().getTime() + Math.floor((Math.random() * 20) + 1);
+          timeDelta = getNextTime(1, 20);
         }
 
         RainDropManager.update();
-
         requestAnimationFrame(loop);
       }
 
