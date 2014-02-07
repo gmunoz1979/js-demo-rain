@@ -1,10 +1,17 @@
 /** 
  * Definimos las dimensiones del contenedor
  */
-const maxHeight = 400;
-const maxWidth  = 400;
+const MAXHEIGHT = 400;
+const MAXWIDTH  = 400;
+/**
+ * Definimos color de fondo
+ */
+const BGCOLOR = '#000000';
 
-const bgColor = '#000000';
+/**
+ * Definimos angulo inicial
+ */
+const ANGLE = 90;
 
 (
   function(root) {
@@ -23,7 +30,7 @@ const bgColor = '#000000';
           
       var rm = RainDropManager;
 
-      var angle  = 90;
+      var angle = ANGLE;
 
       var loop = function() {
         var tt = new Date().getTime();
@@ -37,9 +44,9 @@ const bgColor = '#000000';
                 cxt: cxt,
                 x:         rm.getPositionX(),
                 angle:     -angle,
-                maxHeight: maxHeight,
-                maxWidth:  maxWidth,
-                bgColor:   bgColor,
+                maxHeight: MAXHEIGHT,
+                maxWidth:  MAXWIDTH,
+                bgColor:   BGCOLOR,
                 type:      rm.getType()
               }
             )

@@ -31,7 +31,7 @@ RainDropManager = Singleton(
           i = this.instances;
 
       while (!isValid) {
-        rnd     = getRandom(1, maxWidth);
+        rnd     = getRandom(1, MAXWIDTH);
         isValid = true;
 
         for (var n in i) {
