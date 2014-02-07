@@ -17,9 +17,9 @@ RainDropManager = Singleton(
       delete this.instances[instance.id];
     },
 
-    update: function() {
+    update: function(dt) {
       for (var name in this.instances) {
-        this.instances[name].update && this.instances[name].update();
+        this.instances[name].update && this.instances[name].update(dt);
       }
     },
 

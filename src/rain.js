@@ -18,23 +18,27 @@ const bgColor = '#000000';
         return;
       }
 
-      var timeDeltaAngle = 0,
-          timeDelta = 0,
+      var nextAngle    = 0,
+          nextRainDrop = 0,
+          curTime = new Date().getTime(),
           rm = RainDropManager,
           angle;
 
       var loop = function() {
-        if (new Date().getTime() > timeDeltaAngle) {
+        var dt  = (new Date().getTime() - curTime) / 1000;
+        curTime = new Date().getTime();
+
+        if (curTime > nextAngle) {
           angle = rm.getAngle();
 
           /** 
            * Entre 5 y 10 segundos cambiar el angulo
            * de las gotas.
            */
-          timeDeltaAngle = getNextTime(5000, 10000);
+          nextAngle = getNextTime(5000, 10000);
         }
 
-        if (new Date().getTime() > timeDelta) {
+        if (curTime > nextRainDrop) {
           rm.add(
             new RainDrop(
               {
@@ -52,10 +56,10 @@ const bgColor = '#000000';
           /** 
            * Siguiente grupo de gotas
            */
-          timeDelta = getNextTime(1, 20);
+          nextRainDrop = getNextTime(1, 20);
         }
-
-        RainDropManager.update();
+        
+        RainDropManager.update(dt);
         requestAnimationFrame(loop);
       }
 

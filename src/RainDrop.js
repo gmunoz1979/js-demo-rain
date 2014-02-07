@@ -32,10 +32,10 @@ RainDrop = Class(
     ],
 
     speeds: [
-       5,
-       7,
-       9,
-      11
+      300,
+      400,
+      500,
+      600
     ],
 
     initialize: function(config) {
@@ -86,9 +86,9 @@ RainDrop = Class(
       this.cxt.restore();
     },
 
-    update: function() {
+    update: function(dt) {
       this.clear();
-      this.radius += this.speed;
+      this.radius += dt * this.speed;
 
       if (this.xy1.x < 0 || this.xy1.x > this.maxWidth) {
         this.remove();
