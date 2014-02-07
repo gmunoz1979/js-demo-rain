@@ -1,10 +1,9 @@
 RainDrop = Class(
   {
     id: null,
+    y: 0,
     height: 0,
     width: 1,
-    x: 0,
-    y: 0,
     speed: 0,
     cxt: null,
     maxHeight: 0,
@@ -15,13 +14,38 @@ RainDrop = Class(
     rad: 0,
     xy1: null,
     xy2: null,
+    type: 0,
+    color: null,
+
+    colors: [
+      '#483D8B',
+      '#009ACD',
+      '#00B2EE',
+      '#97FFFF'
+    ],
+
+    sizes: [
+       60,
+       80,
+      100,
+      120
+    ],
+
+    speeds: [
+       5,
+       7,
+       9,
+      11
+    ],
 
     initialize: function(config) {
       apply(this, config);
 
-      this.id  = getID();
-      this.y   = -this.height;
-      this.rad = (Math.PI/180) * this.angle;
+      this.id     = getID();
+      this.rad    = (Math.PI/180) * this.angle;
+      this.color  = this.colors[this.type];
+      this.height = this.sizes[this.type];
+      this.speed  = this.speeds[this.type];
 
       this.xy1 = this.getXY(this.radius-this.height);
       this.xy2 = this.getXY(this.radius);

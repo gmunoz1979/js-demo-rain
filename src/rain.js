@@ -35,9 +35,6 @@ const bgColor = '#000000';
         }
 
         if (new Date().getTime() > timeDelta) {
-
-          var speed = rm.getSpeed();
-
           rm.add(
             new RainDrop(
               {
@@ -47,9 +44,7 @@ const bgColor = '#000000';
                 maxHeight: maxHeight,
                 maxWidth:  maxWidth,
                 bgColor:   bgColor,
-                speed:     speed,
-                color:     rm.getColor(speed),
-                height:    rm.getHeight(speed)
+                type:      rm.getType()
               }
             )
           );
