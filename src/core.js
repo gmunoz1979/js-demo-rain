@@ -31,3 +31,6 @@ function getRandom(min, max) {
 function getNextTime() {
   return new Date().getTime() + getRandom.apply(getRandom, arguments);
 }
+
+var id = 0;
+function getID() { return 'rain-' + id++ };

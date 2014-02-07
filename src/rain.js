@@ -17,9 +17,6 @@ function getContext() {
   return canvas.getContext('2d');
 }
 
-var id = 0;
-function getID() { return 'rain-' + id++ };
-
 (
   function(root) {
     'use strict';
