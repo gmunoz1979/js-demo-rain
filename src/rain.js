@@ -1,8 +1,8 @@
-/** 
+/**
  * Definimos las dimensiones del contenedor
  */
-const MAXHEIGHT = 400;
-const MAXWIDTH  = 400;
+var MAXHEIGHT = 0;
+var MAXWIDTH  = 0;
 /**
  * Definimos color de fondo
  */
@@ -27,6 +27,14 @@ function getAngle() {
     'use strict';
 
     root.onload = function() {
+      var container = document.querySelector('.container');
+      MAXHEIGHT = container.clientHeight;
+      MAXWIDTH  = container.clientWidth;
+
+      var canvas = document.querySelector('canvas');
+      canvas.width  = MAXWIDTH;
+      canvas.height = MAXHEIGHT;
+
       var cxt = getContext('rain');
 
       if (!cxt) {
@@ -36,7 +44,7 @@ function getAngle() {
 
       var ct = new Date().getTime(),
           nt = 0;
-          
+
       var rm = RainDropManager;
 
       var angle  = ANGLE,
@@ -84,7 +92,7 @@ function getAngle() {
             }
           }
 
-          /** 
+          /**
            * Siguiente grupo de gotas
            */
           nt = getNextTime(1, 20);
